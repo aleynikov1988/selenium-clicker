@@ -22,6 +22,13 @@ def get_driver(proxy, foregraund = False, windows_size = None):
         if windows_size:
             chrome_options.add_argument("--window-size=%s" % windows_size)
 
+    # mobile emulate
+    if CONFIG['mobile']['enable']:
+        mobile_emulation = {
+            'deviceName': CONFIG['mobile']['deviceName']
+        }
+        chrome_options.add_experimental_option('mobileEmulation', mobile_emulation)
+
     driver = webdriver.Chrome(options=chrome_options)
 
     if CONFIG['general']['debug']:

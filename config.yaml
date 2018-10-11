@@ -1,7 +1,11 @@
 general:
-  foreground: True
+  foreground: False
   window_size: '1920,1080'
   debug: False
+
+mobile:
+  enable: True
+  deviceName: 'Nexus 5'
 
 proxy:
   - '188.40.238.161:36140'
