@@ -35,7 +35,7 @@ def main():
 
         for link in CONFIG['links']:
             driver.get(link)
-            driver.close()
+        driver.close()
 
 if __name__ == '__main__':
     main()
