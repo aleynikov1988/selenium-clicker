@@ -1,0 +1,10 @@
+general:
+  foreground: True
+  window_size: '1920,1080'
+  debug: False
+
+proxy:
+  - '188.40.238.161:36140'
+
+links:
+  - 'https://whatismyipaddress.com/'
