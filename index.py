@@ -26,16 +26,22 @@ def get_driver(proxy, foregraund = False, windows_size = None):
 
 def main():
     # here mus be implemented correct logic to loop of URLs via PROXies
-    for proxy in CONFIG['proxy']:
-        driver = get_driver(
-            proxy,
-            CONFIG['general']['foreground'],
-            CONFIG['general']['window_size']
-        )
+    i = 0
+    while (True):
+        if CONFIG['general']['debug']:
+            logging.info('Iterration: {0}'.format(i))
+            i += 1
 
-        for link in CONFIG['links']:
-            driver.get(link)
-        driver.close()
+        for proxy in CONFIG['proxy']:
+            driver = get_driver(
+                proxy,
+                CONFIG['general']['foreground'],
+                CONFIG['general']['window_size']
+            )
+
+            for link in CONFIG['links']:
+                driver.get(link)
+            driver.close()
 
 if __name__ == '__main__':
     main()
