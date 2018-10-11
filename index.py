@@ -1,6 +1,8 @@
 from selenium import webdriver
 import logging
 from config import get_config
+import platform
+
 
 CONFIG = get_config()
 
@@ -13,6 +15,9 @@ def get_driver(proxy, foregraund = False, windows_size = None):
 
     if foregraund:
         chrome_options.add_argument("--headless")
+
+        if platform.system() == 'Windows':
+            chrome_options.add_argument("--disable-gpu")
 
         if windows_size:
             chrome_options.add_argument("--window-size=%s" % windows_size)
