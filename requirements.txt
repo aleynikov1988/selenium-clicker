@@ -1,3 +1,4 @@
 PyYAML==3.13
 selenium==3.14.1
 urllib3==1.23
+xvfbwrapper==0.2.9

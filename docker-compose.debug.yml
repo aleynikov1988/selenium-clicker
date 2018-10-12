@@ -1,0 +1,9 @@
+version: '2.1'
+
+services:
+  selenium:
+    image: selenium-proxy
+    build:
+      context: .
+      dockerfile: Dockerfile
+

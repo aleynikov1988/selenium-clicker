@@ -1,10 +1,8 @@
 general:
-  foreground: False
-  window_size: '1920,1080'
   debug: False
 
 mobile:
-  enable: True
+  enable: False
   deviceName: 'Nexus 5'
 
 proxy:

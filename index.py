@@ -2,6 +2,9 @@ from selenium import webdriver
 import logging
 from config import get_config
 import platform
+from xvfbwrapper import Xvfb
+import os
+import time
 
 
 CONFIG = get_config()
@@ -9,18 +12,9 @@ CONFIG = get_config()
 if CONFIG['general']['debug']:
     logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
 
-def get_driver(proxy, foregraund = False, windows_size = None):
+def get_driver(proxy):
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument('--proxy-server=%s' % proxy)
-
-    if foregraund:
-        chrome_options.add_argument("--headless")
-
-        if platform.system() == 'Windows':
-            chrome_options.add_argument("--disable-gpu")
-
-        if windows_size:
-            chrome_options.add_argument("--window-size=%s" % windows_size)
 
     # mobile emulate
     if CONFIG['mobile']['enable']:
@@ -32,28 +26,33 @@ def get_driver(proxy, foregraund = False, windows_size = None):
     driver = webdriver.Chrome(options=chrome_options)
 
     if CONFIG['general']['debug']:
-        logging.info('Create driver: ({0}, {1}, {2})'.format(proxy, foregraund, windows_size))
+        logging.info('Use proxy: ({0})'.format(proxy))
 
     return driver
 
 def main():
-    # here mus be implemented correct logic to loop of URLs via PROXies
+    vdisplay = Xvfb(width=1280, height=740, colordepth=16)
+    vdisplay.start()
+
     i = 0
     while (True):
+        i = i + 1
         if CONFIG['general']['debug']:
             logging.info('Iterration: {0}'.format(i))
             i += 1
 
         for proxy in CONFIG['proxy']:
-            driver = get_driver(
-                proxy,
-                CONFIG['general']['foreground'],
-                CONFIG['general']['window_size']
-            )
+            driver = get_driver(proxy)
 
             for link in CONFIG['links']:
                 driver.get(link)
+                filename = '{0}/screenshot/{1}.png'.format(os.path.dirname(os.path.realpath(__file__)), int(time.time()))
+                driver.save_screenshot(filename)
+                logging.info('Save screenshot: {0}'.format(filename))
+
             driver.close()
+
+    vdisplay.stop()
 
 if __name__ == '__main__':
     main()
