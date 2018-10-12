@@ -14,6 +14,7 @@ if CONFIG['general']['debug']:
 
 def get_driver(proxy):
     chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--proxy-server=%s' % proxy)
 
     # mobile emulate
@@ -31,12 +32,13 @@ def get_driver(proxy):
     return driver
 
 def main():
-    vdisplay = Xvfb(width=1280, height=740, colordepth=16)
+    vdisplay = Xvfb(width=1024, height=768, colordepth=24)
     vdisplay.start()
 
     i = 0
     while (True):
         i = i + 1
+
         if CONFIG['general']['debug']:
             logging.info('Iterration: {0}'.format(i))
             i += 1
