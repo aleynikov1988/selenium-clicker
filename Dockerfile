@@ -6,9 +6,14 @@
 # tags from Docker Hub.
 FROM joyzoursky/python-chromedriver:3.6-xvfb
 
+# install PM2
+RUN wget -qO- https://deb.nodesource.com/setup_8.x | bash - \
+&& apt-get install -y nodejs \
+&& npm i pm2 -g
+
 WORKDIR /app
 ADD . /app
 
 # Using pip:
 RUN python -m pip install -r requirements.txt
-CMD ["xvfb-run", "python", "index.py"]
+CMD [ "pm2-runtime", "start", "ecosystem.config.js" ]
