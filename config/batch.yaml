@@ -1,0 +1,19 @@
+deu-web-ban:
+  lang: 'deu'
+  deviceType: 'desktop'
+  linksType: 'ban'
+
+deu-web-pop:
+  lang: 'deu'
+  deviceType: 'desktop'
+  linksType: 'pop'
+
+deu-mob-ban:
+  lang: 'deu'
+  deviceType: 'mobile'
+  linksType: 'ban'
+
+deu-mob-pop:
+  lang: 'deu'
+  deviceType: 'mobile'
+  linksType: 'pop'
