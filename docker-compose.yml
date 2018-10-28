@@ -2,7 +2,21 @@ version: '2.1'
 
 services:
   selenium:
-    image: selenium-proxy
+    container_name: selenium-app
     build: .
     volumes:
       - .:/app
+    depends_on:
+      - mongodb
+  mongodb:
+    container_name: selenium-mongodb
+    image: mongo
+    restart: always
+    volumes:
+      - ./mongodata:/data/db
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: selenium
+      MONGO_INITDB_ROOT_PASSWORD: selenium
+      MONGO_INITDB_DATABASE: selenium

@@ -1,19 +1,18 @@
-deu-web-ban:
-  lang: 'deu'
-  deviceType: 'desktop'
-  linksType: 'ban'
-
-deu-web-pop:
-  lang: 'deu'
-  deviceType: 'desktop'
-  linksType: 'pop'
+proxy: &proxy
+  default: !include lang-proxy.yaml
 
 deu-mob-ban:
   lang: 'deu'
-  deviceType: 'mobile'
-  linksType: 'ban'
-
-deu-mob-pop:
-  lang: 'deu'
-  deviceType: 'mobile'
-  linksType: 'pop'
+  proxy:
+    <<: *proxy
+  device:
+    type: mobile
+    name:
+      - 'Nexus 5'
+      - 'iPad Mini'
+  links:
+    ban:
+      - 'https://horny-honey.online/landers/test_clicker_notjump/test_clicker_notjump/index.html'
+  maxclick:
+    interval_h: 1
+    count: 1000

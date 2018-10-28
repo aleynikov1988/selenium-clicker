@@ -1,48 +1,36 @@
-from yaml import load
-from random import choice
+import yaml
+import os.path
 
+
+class Loader(yaml.SafeLoader):
+    def __init__(self, stream):
+        self._root = os.path.split(stream.name)[0]
+        super(Loader, self).__init__(stream)
+
+    def include(self, node):
+        filename = os.path.join(self._root, self.construct_scalar(node))
+
+        with open(filename, 'r') as f:
+            return yaml.load(f, Loader)
+
+Loader.add_constructor('!include', Loader.include)
 
 def _get_config(name):
     with open('./config/{0}.yaml'.format(name), 'r') as outfile:
-        config = load(outfile)
+        config = yaml.load(outfile, Loader)
+
     return config
 
 def get_general():
     return _get_config('general')
 
-def get_proxy(lang):
-    proxy = _get_config('lang-proxy')
-
-    if proxy[lang]:
-        return proxy[lang]
-
-    return None
-
-def get_links(linksType):
-    config = _get_config('links')
-
-    if config[linksType]:
-        return config[linksType]
-
-    return None
-
 def get_batch(name):
     config = _get_config('batch')
-    batch = config[name]
+    batch = None
 
-    if batch:
-        if batch['lang']:
-            batch['proxy'] = get_proxy(batch['lang'])
+    try:
+        batch = config[name]
+    except KeyError:
+        pass
 
-        if batch['deviceType'] == 'mobile':
-            device = _get_config('device-type')
-            batch['mobile'] = choice(device['mobile'])
-        else:
-            batch['mobile'] = None
-
-        if batch['linksType']:
-            batch['links'] = get_links(batch['linksType'])
-
-        return batch
-
-    return None 
+    return batch
