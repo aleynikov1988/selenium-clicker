@@ -20,7 +20,8 @@ if DEBUG_MODE:
 
 def get_driver(proxy, lang, device_name=None):
     chrome_options = webdriver.ChromeOptions()
-    chrome_options.add_argument('--proxy-server={0}'.format(proxy))
+    # chrome_options.add_argument('--proxy-server={0}'.format(proxy))
+    chrome_options.add_extension('proxy_auth_plugin.zip')
     chrome_options.add_argument('--lang={0}'.format(lang))
 
     # mobile emulate
@@ -99,9 +100,6 @@ def main():
         lang = settings['lang']
         proxies = settings['proxy']['default'][lang]
 
-        mc_interval = settings['maxclick']['interval_h']
-        mc_count = settings['maxclick']['count']
-
         for proxy in proxies:
             device_name = None
 
@@ -115,6 +113,9 @@ def main():
             links_pop = links['pop'] if 'pop' in links else []
 
             for link in links_ban:
+                mc_interval = settings['maxclick']['interval_h']
+                mc_count = settings['maxclick']['count']
+
                 if is_capped(db, batch_name, mc_interval, mc_count):
                     continue
 

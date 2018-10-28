@@ -9,10 +9,85 @@ deu-mob-ban:
     type: mobile
     name:
       - 'Nexus 5'
-      - 'iPad Mini'
+      - 'iPhone X'
+      - 'Apple iPhone 6'
+      - 'Apple iPhone 6 Plus'
+      - 'Galaxy S5'
+      - 'Pixel 2'
+      - 'Pixel 2 XL'
+      - 'Samsung Galaxy S III'
+      - 'Samsung Galaxy S4'
+      - 'Nexus 6'
+      - 'Galaxy S III'
+      - 'Galaxy S III'
+      - 'Nokia N9'
+      - 'Galaxy S5'
+      - 'Galaxy S5'
+      - 'Galaxy S5'
+      - 'Galaxy S5'
+      - 'Samsung Galaxy S4'
+      - 'Samsung Galaxy S4'
+
   links:
     ban:
-      - 'https://horny-honey.online/landers/test_clicker_notjump/test_clicker_notjump/index.html'
+      - 'https://healthadviser.life/click.php?key=cbq2871rajr73mf2p1cb&s1=view01'
+      - 'https://healthadviser.life/click.php?key=s8b6j7klurvtyf7jdrjt&s1=view02'
   maxclick:
     interval_h: 1
-    count: 1000
+    count: 50
+
+deu-mob-pop:
+  lang: 'deu'
+  proxy:
+    <<: *proxy
+  device:
+    type: mobile
+    name:
+      - 'Nexus 5'
+      - 'iPhone X'
+      - 'Apple iPhone 6'
+      - 'Apple iPhone 6 Plus'
+      - 'Galaxy S5'
+      - 'Pixel 2'
+      - 'Pixel 2 XL'
+      - 'Samsung Galaxy S III'
+      - 'Samsung Galaxy S4'
+      - 'Nexus 6'
+      - 'Galaxy S III'
+      - 'Galaxy S III'
+      - 'Nokia N9'
+      - 'Galaxy S5'
+      - 'Galaxy S5'
+      - 'Galaxy S5'
+      - 'Galaxy S5'
+      - 'Samsung Galaxy S4'
+      - 'Samsung Galaxy S4'
+  links:
+    pop:
+      - 'https://healthadviser.life/click.php?key=ic6wx3zmqo7cb4t9s3fi&s1=npop01'
+      - 'https://healthadviser.life/click.php?key=ic6wx3zmqo7cb4t9s3fi&s1=npop02'
+
+deu-web-pop:
+  lang: 'deu'
+  proxy:
+    <<: *proxy
+  device:
+    type: desktop
+  links:
+    pop:
+      - 'https://healthadviser.life/click.php?key=ic6wx3zmqo7cb4t9s3fi&s1=wpop01'
+      - 'https://healthadviser.life/click.php?key=ic6wx3zmqo7cb4t9s3fi&s1=wpop02'
+
+deu-web-ban:
+  lang: 'deu'
+  proxy:
+    <<: *proxy
+  device:
+    type: desktop
+  links:
+    ban:
+      - 'https://healthadviser.life/click.php?key=cbq2871rajr73mf2p1cb&s1=wview01'
+      - 'https://healthadviser.life/click.php?key=s8b6j7klurvtyf7jdrjt&s1=wview02'
+  maxclick:
+    interval_h: 1
+    count: 85
