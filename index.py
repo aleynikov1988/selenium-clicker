@@ -20,8 +20,9 @@ if DEBUG_MODE:
 
 def get_driver(proxy, lang, device_name=None):
     chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_argument('--no-sandbox')
     # chrome_options.add_argument('--proxy-server={0}'.format(proxy))
-    # chrome_options.add_extension('proxy_auth_plugin.zip')
+    chrome_options.add_extension('proxy_auth_plugin.zip')
     chrome_options.add_argument('--lang={0}'.format(lang))
 
     # mobile emulate
