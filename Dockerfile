@@ -16,4 +16,5 @@ ADD . /app
 
 # Using pip:
 RUN python -m pip install -r requirements.txt
-CMD [ "pm2-runtime", "start", "ecosystem.config.js" ]
+# CMD [ "pm2-runtime", "start", "ecosystem.config.js" ]
+CMD [ "python", "index.py", "--batch=deu-mob-ban", "--vdisplay=1"]
