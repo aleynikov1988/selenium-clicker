@@ -13,7 +13,7 @@ from datetime import datetime, timedelta
 
 general_config = get_general()
 DEBUG_MODE = general_config['debug']
-DRIVER_DELAY=3
+DRIVER_DELAY=15
 
 if DEBUG_MODE:
     logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
@@ -125,7 +125,6 @@ def main():
 
                 link = driver.find_element_by_xpath('//a/img')
                 link.click()
-
                 track_click(db, batch_name, _link)
 
                 if DEBUG_MODE:
@@ -136,8 +135,9 @@ def main():
 
                 if DEBUG_MODE:
                     make_screenshot(driver)
-            
+
             time.sleep(DRIVER_DELAY)
+            driver.close()
             driver.quit()
 
     if args.vdisplay:
