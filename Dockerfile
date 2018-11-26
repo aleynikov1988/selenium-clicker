@@ -24,9 +24,15 @@ RUN apt-get install -yqq xvfb
 ENV DISPLAY=:99
 ENV DBUS_SESSION_BUS_ADDRESS=/dev/null
 
+# install PM2
+RUN wget -qO- https://deb.nodesource.com/setup_8.x | bash - \
+&& apt-get install -y nodejs \
+&& npm i pm2 -g
+
 WORKDIR /app
 ADD . /app
 
 # Using pip:
 RUN python -m pip install -r requirements.txt
-CMD ["python", "index.py"]
+CMD [ "pm2-runtime", "start", "ecosystem.config.js" ]
+#CMD [ "python", "index.py", "--batch=deu-mob-ban", "--vdisplay=1"]
