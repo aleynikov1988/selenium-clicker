@@ -1,5 +1,5 @@
 pymongo==3.7.2
-PyYAML==3.13
+PyYAML==5.4
 selenium==3.14.1
 urllib3==1.24
 xvfbwrapper==0.2.9
